@@ -1,0 +1,44 @@
+.wrap {
+    background-color: #fff;
+    padding: 2rem;
+}
+
+.wrap .title {
+    text-transform: capitalize;
+    font-size: 2rem;
+    letter-spacing: 1.2px;
+    border-bottom: 1px solid #eee;
+}
+
+.form-table {
+    margin: 2rem 0;
+}
+
+.form-table th {
+    width: 240px;
+}
+
+.wrap .reset-btn {
+    color: #fff;
+    background: #2271b1;
+    border-color: transparent;
+    color: #fff;
+    text-decoration: none;
+    text-shadow: none;
+    vertical-align: baseline;
+    padding: 6px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.label-flex {
+    /* display: flex;
+    justify-content: space-between;
+    width: 150px;
+    align-items: center;
+    margin: 0 0 1rem 0; */
+}
+
+.label-flex label {
+    text-transform: capitalize;
+}

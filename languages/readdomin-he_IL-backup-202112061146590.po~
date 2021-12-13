@@ -1,0 +1,58 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Reading Time Plugin\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-12-06 11:21+0000\n"
+"PO-Revision-Date: 2021-12-06 11:23+0000\n"
+"Last-Translator: \n"
+"Language-Team: Hebrew\n"
+"Language: he_IL\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.5.5; wp-5.8.2\n"
+"X-Domain: readdomin"
+
+#. Author URI of the plugin
+msgid "https://nosite.org"
+msgstr "https://nosite.org"
+
+#: reading-time-pluging.php:56 reading-time-pluging.php:59
+msgid "minute(s) to read."
+msgstr "דקה/(ות) לקריאה."
+
+#. Author of the plugin
+msgid "Nadar Rosano"
+msgstr "נדר רוסנו"
+
+#. Name of the plugin
+msgid "Reading Time Plugin"
+msgstr ""
+"תוסף זמן קריאה\n"
+
+#. Description of the plugin
+msgid "Reading time plugin"
+msgstr ""
+"תוסף זמן קריאה\n"
+
+#: reading-time-pluging.php:159
+msgid "Reading Time Posts"
+msgstr ""
+"פוסטים של זמן קריאה\n"
+
+#: reading-time-pluging.php:177
+msgid "Reading Time Settings:"
+msgstr ""
+"הגדרות זמן קריאה:\n"
+
+#: reading-time-pluging.php:59
+msgid "ROUND DOWN: This post will take"
+msgstr ""
+"לעגל למטה: הפוסט הזה ייקח\n"
+
+#: reading-time-pluging.php:56
+msgid "ROUND UP: This post will take"
+msgstr ""
+"לעגל מעלה: הפוסט הזה ייקח\n"
