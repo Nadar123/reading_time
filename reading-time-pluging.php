@@ -13,11 +13,18 @@ if ( !function_exists( 'add_action' ) ) {
 	echo 'Hi there!  I\'m just a plugin, not much I can do when called directly.';
 	exit;
 }
-// enqueue css stylesheet for admin.
+
+/**
+* enqueue css stylesheet for admin.
+*/
 define( 'STYLESHEETPATH', get_stylesheet_directory(), './enqueue/enqueue-style.php');
 
+/**
+* shortcode
+*/
+// include('./shortcode/init.php');
 
-//Creating class for the plugin
+//Creating class readingTimePlugin
 class readingTimePlugin {
 
   function __construct() {
@@ -28,7 +35,7 @@ class readingTimePlugin {
   }
   /**
   * languages
-   */
+  */
   public function languages() {
     load_plugin_textdomain('readdomin', false, 
     dirname(plugin_basename(__FILE__)) . '/languages');
