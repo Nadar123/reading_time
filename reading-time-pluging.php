@@ -14,26 +14,22 @@ if ( !function_exists( 'add_action' ) ) {
 	exit;
 }
 // enqueue css stylesheet for admin.
-function enqueue_custom_style() {
-  wp_register_style( 'custom_wp_css', plugin_dir_url( __FILE__ ) . './css/style.css', false, '1.0.0' );
-  wp_enqueue_style( 'custom_wp_css' );
-}
-add_action( 'admin_enqueue_scripts', 'enqueue_custom_style' ); 
+define( 'STYLESHEETPATH', get_stylesheet_directory(), './enqueue/enqueue-style.php');
 
 
-//creating class for the plugin
+//Creating class for the plugin
 class readingTimePlugin {
+
   function __construct() {
     add_action('admin_menu', array($this, 'admin_page'));
     add_action('admin_init', array($this, 'setting'));
     add_filter('the_content', array($this, 'show_word_count'));
     add_action('init', array($this, 'languages'));
   }
-
   /**
   * languages
    */
-  function languages() {
+  public function languages() {
     load_plugin_textdomain('readdomin', false, 
     dirname(plugin_basename(__FILE__)) . '/languages');
   }
@@ -42,7 +38,7 @@ class readingTimePlugin {
    * @param string $content
    * @return string
    */
-  function show_word_count($content) {
+  public function show_word_count($content) {
     if( is_main_query() && is_single() && is_singular() && get_option('word_read_time', '1')) {
       return $this-> content_html($content);
     }
@@ -53,7 +49,7 @@ class readingTimePlugin {
    * @param int $post_id
    * @return string
    */
-  function render_output_html($post_id = null ) {
+  public function render_output_html($post_id = null ) {
     $post_id = $post_id ? $post_id : get_the_ID();
     $this_post = get_post( $post_id );
     $content = $this_post->post_content; 
@@ -77,7 +73,7 @@ class readingTimePlugin {
    * @param int $content
    * @return string
    */
-  function content_html($content) {
+  public function content_html($content) {
     return $content . $this->render_output_html();
   }
   /**
@@ -85,7 +81,7 @@ class readingTimePlugin {
    * @param int $type
    * @return string
    */
-  function setting($type) {
+  public function setting($type) {
     add_settings_section('first_section', null, null, 'word-count-settings-page');
 
     // Headline title field
@@ -107,7 +103,7 @@ class readingTimePlugin {
   /**
    * supported_post_types_html
    */
-  function supported_post_types_html() {
+  public function supported_post_types_html() {
     $supportedPostTypes = get_option('supported_post_types', ['post']);
     $exclude_post_types = array(
       'attachment', 
@@ -144,7 +140,7 @@ class readingTimePlugin {
   * @param int $input
   * @return string
   */
-  function sanitize_location_default($input) {
+  public function sanitize_location_default($input) {
     if($input != '0' && $input != '1') {
       add_settings_error('supported_post_types','rounding_behavior_error', 'Rounding Behavior can be up OR dowm');
       return get_option('rounding_behavior');
@@ -155,7 +151,7 @@ class readingTimePlugin {
   /** 
   * head_line_html
   */
-  function head_line_html() { ?>
+  public function head_line_html() { ?>
     <input type="text" 
       name="word_headline" 
       value="<?php echo esc_attr( get_option('word_headline') );?>">
@@ -176,7 +172,7 @@ class readingTimePlugin {
   /** 
   * rounding_behavior_html
   */
-function rounding_behavior_html() { ?>
+  public function rounding_behavior_html() { ?>
   <select name="rounding_behavior">
     <option value="0" <?php selected(get_option('rounding_behavior'), '0')?>> 
       <?php echo __('Round up', 'readdomin');?> 
@@ -191,14 +187,14 @@ function rounding_behavior_html() { ?>
   /** 
   * admin_page
   */
-  function admin_page() {
+  public function admin_page() {
     add_options_page('Reading Time Settings', __('Reading Time Posts', 'readdomin'),'manage_options', 'word-count-settings-page', array($this, 'admin_page_html'));
   }
 
   /** 
   * admin_page_html
   */
-  function admin_page_html() { ?>
+  public function admin_page_html() { ?>
       <div class="wrap">
         <h1 class="title"> 
           <?php echo __('Reading Time Settings:','readdomin');  ?>
