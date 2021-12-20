@@ -31,14 +31,7 @@
     cursor: pointer;
 }
 
-.label-flex {
-    /* display: flex;
-    justify-content: space-between;
-    width: 150px;
-    align-items: center;
-    margin: 0 0 1rem 0; */
-}
-
 .label-flex label {
     text-transform: capitalize;
+    color: red;
 }

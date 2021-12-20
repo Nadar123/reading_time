@@ -17,12 +17,19 @@ if ( !function_exists( 'add_action' ) ) {
 /**
 * enqueue css stylesheet for admin.
 */
-define( 'STYLESHEETPATH', get_stylesheet_directory(), './enqueue/enqueue-style.php');
+function enqueue_custom_style() {
+  wp_register_style( 'custom_wp_css', plugin_dir_url( __FILE__ ) . 
+  './css/style.css', false, '1.0.0' );
 
+  wp_enqueue_style( 'custom_wp_css' );
+}
+add_action( 'admin_print_styles', 'enqueue_custom_style' ); 
 /**
 * shortcode
 */
 // include('./shortcode/init.php');
+// include('./shortcode/init.php');
+// get_template_part('shortcode/init');
 
 //Creating class readingTimePlugin
 class readingTimePlugin {
@@ -52,26 +59,33 @@ class readingTimePlugin {
     return $content;
   }
   /**
-   * lol
+   * render_output_html
    * @param int $post_id
    * @return string
    */
   public function render_output_html($post_id = null ) {
+    // var_dump($post_id);
+    // die();
     $post_id = $post_id ? $post_id : get_the_ID();
     $this_post = get_post( $post_id );
     $content = $this_post->post_content; 
 
-    $html = '<hr><h3>' . esc_html(get_option('word_headline', 'Post Information Time Reading') ) . '</h3> <p>';
-    $wordCount = str_word_count(strip_tags($content));
+    if(in_array($this_post->post_type, get_option('supported_post_types', '1'))) {
+      // var_dump(get_option('supported_post_types', '1')); exit();
+      $html = '<hr><h3>' . esc_html(get_option('word_headline', 'Post Information Time Reading') ) . '</h3> <p>';
+      $wordCount = str_word_count(strip_tags($content));
 
-    if(get_option('word_read_time', '1') == '1' && get_option('rounding_behavior', '1') == '1') {
-      $html .=  __('ROUND DOWN: This post will take', 'readdomin') . ' ' . floor($wordCount/200)  . ' ' .
-      __('minute(s) to read.', 'readdomin') . '</P><br> <hr>';
-    } 
-    else {
-      $html .=  __('ROUND UP: This post will take', 'readdomin') . ' ' .  ceil($wordCount/200)  . ' ' .
-      __('minute(s) to read.', 'readdomin') . '</p><br> <hr>';
-    } 
+      if(get_option('word_read_time', '1') == '1' && get_option('rounding_behavior', '1') == '1' && get_option('supported_post_types', '1') ==  $this_post ) {
+        $html .=  __('ROUND DOWN: This post will take', 'readdomin') . ' ' . floor($wordCount/200)  . ' ' .
+        __('minute(s) to read.', 'readdomin') . '</p><br> <hr>';
+      } 
+      else {
+        $html .=  __('ROUND UP: This post will take', 'readdomin') . ' ' .  ceil($wordCount/200)  . ' ' .
+        __('minute(s) to read.', 'readdomin') . '</p><br> <hr>';
+      } 
+
+    
+    }
 
     return $html;
   }
@@ -88,7 +102,7 @@ class readingTimePlugin {
    * @param int $type
    * @return string
    */
-  public function setting($type) {
+  public function setting($s) {
     add_settings_section('first_section', null, null, 'word-count-settings-page');
 
     // Headline title field
