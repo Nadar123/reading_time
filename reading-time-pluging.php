@@ -62,14 +62,13 @@ class readingTimePlugin {
    * @return string
    */
   public function render_output_html($post_id = null ) {
-    // var_dump($post_id);
-    // die();
+    
     $post_id = $post_id ? $post_id : get_the_ID();
     $this_post = get_post( $post_id );
     $content = $this_post->post_content; 
 
     if(in_array($this_post->post_type, get_option('supported_post_types', '1'))) {
-      // var_dump(get_option('supported_post_types', '1')); exit();
+      
       $html = '<hr><h3>' . esc_html(get_option('word_headline', 'Post Information Time Reading') ) . '</h3> <p>';
       $wordCount = str_word_count(strip_tags($content));
 
@@ -77,12 +76,11 @@ class readingTimePlugin {
         $html .=  __('ROUND DOWN: This post will take', 'readdomin') . ' ' . floor($wordCount/200)  . ' ' .
         __('minute(s) to read.', 'readdomin') . '</p><br> <hr>';
       } 
+
       else {
         $html .=  __('ROUND UP: This post will take', 'readdomin') . ' ' .  ceil($wordCount/200)  . ' ' .
         __('minute(s) to read.', 'readdomin') . '</p><br> <hr>';
       } 
-
-    
     }
 
     return $html;
