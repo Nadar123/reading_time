@@ -1,0 +1,4 @@
+name: lando-101
+recipe: wordpress
+config:
+  webroot: reading_time
