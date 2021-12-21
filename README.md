@@ -1,7 +1,7 @@
 # reading_time
 #Reading time Pluging
 
-this is a reading time pluging for wordpress, the pluging can calculate the text/paragraph time to read it. The plugin should allow multiple ways for embedding the “Reading Time” value in a theme:
+this is a reading time pluging for wordpress, the pluging can calculate the text/paragraph reading time. The plugin should allow multiple ways for embedding the “Reading Time” value in a theme:
 -Using the shortcode [reading_time] in post content.
 -By calling a php function named `the_reading_time()`.
 -By echoing the return value of a php function named `get_reading_time()`.
