@@ -27,9 +27,7 @@ add_action( 'admin_print_styles', 'enqueue_custom_style' );
 /**
 * shortcode
 */
-// include('./shortcode/init.php');
-// include('./shortcode/init.php');
-// get_template_part('shortcode/init');
+include('init.php');
 
 //Creating class readingTimePlugin
 class readingTimePlugin {

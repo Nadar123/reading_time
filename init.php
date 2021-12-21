@@ -8,4 +8,4 @@ define('R_SHORTCODES_PART_PATH', 'shortcodes/');
 
 include('inc/function/helpers.php');
  
-include('./shortcode/readingTime/shortcode-reading.php');
+include('shortcode/readingTime/shortcode-reading.php');
